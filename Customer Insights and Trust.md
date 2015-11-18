@@ -8,11 +8,105 @@ In this article, we will talk about how to utilize Watson's Services to help gai
 ## Watson Services
 The IBM Watson Developer Cloud offers developers a sophisticated set of services for gaining deep insights around an applications users. The Personality Insights API, Concept Expansion API, and the Concept Insights API allow developers to rapidly design and develop applications that can combine user data to make deterministic and educated decisions around  users personality and interests.
 
-The [Personality Insights service](https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html) can help businesses have advanced insights into the characteristics and needs of its clients. By providing the service with text to analyze, it will infer personality and social characteristics using three types of information: personality traits, intrinsic needs, and values in general. These insights can be invaluable in helping increase customer retention, procurement, engagement, and conversion.
+The [Personality Insights service](https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html) can help businesses have advanced insights into the characteristics and needs of its clients. By providing the service with text to analyze, it will infer personality and social characteristics using three types of information: personality traits (code-named "Big 5", intrinsic needs, and values in general. These insights can be invaluable in helping increase customer retention, procurement, engagement, and conversion.
+
+For example, using Node.JS and the `watson-developer-cloud` sdk, examining quotes from Darth Vader can be done like so:
+
+```js
+var fs = require('fs');
+var watson = require('watson-developer-cloud');
+	
+var personality_insights = watson.personality_insights({
+  username: '<your-username>',
+  password: '<your-password>',
+  version: 'v2'
+});
+	
+fs.readFile('./data/darth-vader.txt', 'utf8', function(err, text) {
+  if (err) {
+    throw err;
+  } else {
+    personality_insights.profile(
+      {
+        text: text,
+        language: 'en'
+      },
+      function (err, response) {
+        if (err) {
+          console.log('Error: ', err);
+        } else {
+          console.log(JSON.stringify(response, null, 2));
+        }
+      }
+    );
+  }
+});
+```
+
+For brevity the personality insights response of these quotes can be seen here. Also, for better statistical analysis, the Personality Insights service recommends to use a minimum of 3,500 words, and preferably at least 6,000. When analyzing the Darth Vader quotes, many different personality traits, needs, and values are identified, along with a "percentage" (actually more of a ratio), and sampling error.
 
 The [Concept Expansion service](https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/concept-expansion.html) expands upon familiar concept sets to learn about and identify similar and additional terminology that users didn't know existed. Using seed lists, this service runs a fast pattern-matching algorithm that  grows an initial set of similar terminology to a larger and more expanded set of terminology. For example, starting with the following terms: *x-men*, *spider man*, *the incredible hulk*. The Personality Insights API can discover related terms such as: *avengers*, *star wars*, *uncanny x-force*, and more. This service is best suited for scenarios in which there is unstructured text, such as notes, customer feedback, email, and other less-formal communications that doesn't always contain well-formed language.
 
+Communicating with the Concept Expansion service can be done in a similar fashion to the Personality Insights service:
+
+```js
+var fs = require('fs');
+var watson = require('watson-developer-cloud');
+
+var concept_expansion = watson.concept_expansion({
+  username: '<your-username>',
+  password: '<your-password>',
+  version: 'v1-beta'
+});
+
+var params = {
+  seeds: ['jedi', 'Darth Vader', 'Millennium Falcon'],
+  dataset: 'star-wars',
+  label: 'Star Wars'
+};
+
+concept_expansion.expand(params, function (err, response) {
+  if (err) {
+    console.log('error:', err);
+  } else {
+    console.log(JSON.stringify(response, null, 2));
+  }
+});
+```
+
+As expected, the Concept Expansion service returned Star Wars related terminology such as: *vader*, *luke skywalker*, *princess leia*, *chewbacca*, and more.
+
 The [Concept Insights service](https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/concept-insights.html) enables applications to identify associations related to concepts contained inside of text documents. Once concepts have been computed and stored by the Concept Insight service, they can be later used to search other documents to identify other ideas that are conceptually related. This allows developers to build applications that can display rich and insightful navigation and analysis systems for documents.
+
+Finally, the Concept Insights service can be used inside of a Node.JS application like so:
+
+```js
+var fs = require('fs');
+var watson = require('watson-developer-cloud');
+
+var concept_insights = watson.concept_insights({
+  username: '<your-username>',
+  password: '<your-password>',
+  version: 'v2'
+});
+
+var params = {
+  graph: '/graphs/wikipedia/en-latest',
+  text: "Darth Vader kills the Emperor by throwing him down the Death Star's reactor shaft in \"Return of the Jedi\"."
+};
+
+// Retrieve the concepts for input text
+concept_insights.graphs.annotateText(params, function(err, res) {
+  if (err) {
+    console.log(err);
+  }
+  else {
+    console.log(JSON.stringify(res, null, 2));
+  }
+});
+```
+
+This example code asks Watson to identify concepts that are present in the Star Wars related text that was provided, such as: "Darth Vader", "Death Star", "Return of the Jedi", and "Emperor (band)".
 
 ## Collecting Data
 Using cognitive services to gather insights about users can only be successful if the appropriate data is collected and analyzed. Data such as e-commerce navigation and purchase history, social media activity, comments and reviews, and e-mail communication can contain data that when analyzed can provide deep insight into a users personality and social characteristics, and provide better context around optimizing and targeting the users ideal application usage. It is often easiest to start by determining what insights would be most helpful for the software to identify.

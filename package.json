@@ -1,0 +1,28 @@
+{
+  "name": "ibm-articles",
+  "version": "1.0.0",
+  "description": "IBM Watson Article Examples",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Samsinite/ibm-articles.git"
+  },
+  "author": {
+    "name": "Sam Clopton",
+    "email": "sam@wild.land",
+    "url": "https://github.com/Samsinite"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Samsinite/ibm-articles/issues"
+  },
+  "homepage": "https://github.com/Samsinite/ibm-articles#readme",
+  "dependencies": {
+    "node-env-file": "^0.1.8",
+    "watson-developer-cloud": "^1.0.3"
+  }
+}
