@@ -10,18 +10,18 @@ The IBM Watson Developer Cloud offers developers a sophisticated set of services
 
 The [Personality Insights service](https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html) can help businesses have advanced insights into the characteristics and needs of its clients. By providing the service with text to analyze, it will infer personality and social characteristics using three types of information: personality traits (code-named "Big 5", intrinsic needs, and values in general. These insights can be invaluable in helping increase customer retention, procurement, engagement, and conversion.
 
-For example, using Node.JS and the `watson-developer-cloud` sdk, examining quotes from Darth Vader can be done like so:
+For example, using Node.JS and the [Watson Developer Cloud SDK](https://github.com/watson-developer-cloud/node-sdk), examining quotes from Darth Vader can be done like so:
 
 ```js
 var fs = require('fs');
 var watson = require('watson-developer-cloud');
-	
+
 var personality_insights = watson.personality_insights({
   username: '<your-username>',
   password: '<your-password>',
   version: 'v2'
 });
-	
+
 fs.readFile('./data/darth-vader.txt', 'utf8', function(err, text) {
   if (err) {
     throw err;
