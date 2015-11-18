@@ -10,7 +10,7 @@ The IBM Watson Developer Cloud offers developers a sophisticated set of services
 
 The [Personality Insights service](https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html) can help businesses have advanced insights into the characteristics and needs of its clients. By providing the service with text to analyze, it will infer personality and social characteristics using three types of information: personality traits (code-named "Big 5", intrinsic needs, and values in general. These insights can be invaluable in helping increase customer retention, procurement, engagement, and conversion.
 
-For example, using Node.JS and the [Watson Developer Cloud SDK](https://github.com/watson-developer-cloud/node-sdk), examining quotes from Darth Vader can be done like so:
+For example, using Node.JS and the [Watson Developer Cloud SDK](https://github.com/watson-developer-cloud/node-sdk), [examining quotes from Darth Vader](https://github.com/Samsinite/ibm-articles/blob/master/data/darth-vader.txt) can be done like so:
 
 ```js
 var fs = require('fs');
@@ -43,7 +43,7 @@ fs.readFile('./data/darth-vader.txt', 'utf8', function(err, text) {
 });
 ```
 
-For brevity the personality insights response of these quotes can be seen here. Also, for better statistical analysis, the Personality Insights service recommends to use a minimum of 3,500 words, and preferably at least 6,000. When analyzing the Darth Vader quotes, many different personality traits, needs, and values are identified, along with a "percentage" (actually more of a ratio), and sampling error.
+For brevity the personality insights response of these quotes can be seen [here](https://github.com/Samsinite/ibm-articles/blob/master/data/darth-vader-results.json). Also, for better statistical analysis, the Personality Insights service recommends to use a minimum of 3,500 words, and preferably at least 6,000. When analyzing the Darth Vader quotes, many different personality traits, needs, and values are identified, along with a "percentage" (actually more of a ratio), and sampling error.
 
 The [Concept Expansion service](https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/concept-expansion.html) expands upon familiar concept sets to learn about and identify similar and additional terminology that users didn't know existed. Using seed lists, this service runs a fast pattern-matching algorithm that  grows an initial set of similar terminology to a larger and more expanded set of terminology. For example, starting with the following terms: *x-men*, *spider man*, *the incredible hulk*. The Personality Insights API can discover related terms such as: *avengers*, *star wars*, *uncanny x-force*, and more. This service is best suited for scenarios in which there is unstructured text, such as notes, customer feedback, email, and other less-formal communications that doesn't always contain well-formed language.
 
