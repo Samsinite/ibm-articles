@@ -1,6 +1,8 @@
 DevOps and Cognitive Computing
 =======================
 
+In this article, we'll first talk about how Watons's Tradeoff Analytics platform can be used to help developers and system administrators make decisions around application and system performance. Then, we'll examine the current state of log file analysis that is popular among DevOps and developers today, and how Watson's cognitive computational system can be used to help improve log file analysis across multiple sub-systems. You'll learn how to communicate with the Watson's Tradeoff Analytics API, Watson's Concept Expansion API, and Watson's Concept Insight API.
+
 Software developers are no longer throwing their software over the wall to other departments to tested and run. Instead, they are testing their own code and deploying multiple times a day. These developers now demand that their application help provide deep insights into its operation. Using IBM's Watson services provides sophisticated cognitive computation systems can help developer and system engineers better understand performance and system constraints, as well as tame and analyze application logs for easier consumption, thus increasing efficiency and saving time and energy.
 
 ## Tradeoff Analytics for Performance Tradeoff Decisions
@@ -8,7 +10,7 @@ Software developers are no longer throwing their software over the wall to other
 Watson's Tradeoff Analytics is an API centered around helping filter decisions when balancing multiple and conflicting objectives. The user identifies objectives and options, their preferences and priorities, and the service will apply mathematical filtering techniques to identify the top options available. The service can then generate smart visualizations that can help the user understand, compare, and explore their best tradeoffs before making a decision, saving crucial time and energy, and reducing the potential for mis-interpreting vast amounts data.
 
 
-When designing software, performance choices often come down to a game of tradeoffs. Performance optimizations often have competing constraints instead of being strictly orthogonal, forcing engineers into making decisions that can have costly side-effects when mistakes are made. Watson's Tradeoff Analytics service can help developers identify the best tradeoffs when comparing multiple and conflicting performance choices, such as memory, disk space, network latency, and database response times. For example, constraints such as memory, disk space, network latency, and database response times can be examined by DevOps engineers to help them decide how to best optimize different systems or cloud instances.
+When designing software or complex systems, performance choices often come down to a game of tradeoffs. Performance optimizations often have competing constraints instead of being strictly orthogonal, forcing engineers into making decisions that can have costly side-effects when mistakes are made. Watson's Tradeoff Analytics service can help developers identify the best tradeoffs when comparing multiple and conflicting performance choices, such as memory, disk space, network latency, and database response times. For example, constraints such as memory, disk space, network latency, and database response times can be examined by DevOps engineers to help them decide how to best optimize different systems or cloud instances.
 
 With Node.JS, using the Tradeoff Analytics API is fairly straight forward. First, [create a bluemix account](https://console.ng.bluemix.net/registration) or [login to an existing account](https://console.ng.bluemix.net/home/auth/bluemix) and [create a new Tradeoff Analytics service](https://console.ng.bluemix.net/catalog/services/tradeoff-analytics/) Next, install the `watson-developer-cloud` library by running the following command inside of an existing Node.JS project in the terminal:
 
@@ -88,13 +90,15 @@ taClient.start(function() {
 });
 ```
 
+Using the Tradeoff Analytics API provides developers with resources to create new applications that enable smarter and more complex visualizations and recommendations surrounding system performance trade-offs. Thus saving time and money by enabling engineers to have a greater understanding of all performance constraints, and make better decisions surrounding performance and hardware optimizations.
+
 ## Concept Expansion for Log File Analysis
 
-Rarely anymore are applications composed of single services. Instead, most applications integrate and combine many different services and platforms together to help provide a superior product. Analyzing these logs individually is often difficult on its own. Analyzing logs between multiple integrations and services quickly becomes cumbersome and unwieldy. IBM's Watson Concept Expansion service can analyze concepts from one systems log and expand upon these concepts to help identify related terminology across other sets of logs on different platforms and services.
+Rarely anymore are applications composed of single services. Instead, most applications integrate and combine many different services and platforms together to help provide a superior product. Analyzing these logs individually is often difficult on its own.
 
-For the Concept Expansion service to be useful, the engineer must first identify terms or concepts that they are interested expanding. Without a good initial concept set from which to expand from, the service could return unexpected results or noise. 
+Today, most DevOps environments compile log outputs from multiple services and systems into a single file or database store such as S3 or ElasticSearch for post analysis. Analyzing logs between multiple files, integrations, and services quickly becomes cumbersome and unwieldy. IBM's Watson Concept Expansion service can analyze concepts from multiple logs and expand upon related concepts to help identify associated terminology across multiple sets of logs across different platforms and services.
 
-After a good initial set of concepts have been created, communicating with the Concept Expansion service is quite simple. Using Node.JS and the `watson-developer-cloud` SDK, import the SDK and initialize the service with the applications provisioned credentials:
+For the Concept Expansion service to be useful, the engineer must first identify terms or concepts that they are interested expanding. Without a good initial concept set from which to expand from, the service could return unexpected results or noise. After a good initial set of concepts have been created, communicating with the Concept Expansion service is quite simple. Using Node.JS and the `watson-developer-cloud` SDK, import the SDK and initialize the service with the applications provisioned credentials:
 
 ```js
 var watson = require('watson-developer-cloud');
@@ -125,15 +129,17 @@ concept_expansion.expand(initialConceptSet, function (err, response) {
 
 The results can then be processed and are formatted according to the [API documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/apis/#!/concept-expansion/result).
 
-It can be hard to parse log files to easily identify concepts, but Watson's Concept Insight service can help. This service provides a graphs API that can identify and extract concepts, find concepts that relate to a set of provided concepts, and find labels related to a specified concept. It also provides a corpora API that allows its users to upload documents and build new graphs around uploaded documents. These documents are automatically indexed and annotated, allowing uploaded documents to be analyzed further, and be searched and compared for related concepts. 
+Using the Concept Expansion API alone isn't too terribly useful. It can be hard to parse log files to easily identify concepts, but Watson's Concept Insight service can help. This service provides a graphs API that can identify and extract concepts, find concepts that relate to a set of provided concepts, and find labels related to a specified concept. It also provides a corpora API that allows its users to upload documents and build new graphs around uploaded documents. These documents are automatically indexed and annotated, allowing uploaded documents to be analyzed further, and be searched and compared for related concepts. 
 
-Creating documents around the concepts that are included inside of log files can help increase the ability to identify and extract concepts contained inside of log text. Without uploading new documents, only the concepts identified in other public corpora can be used for concept insights. Uploading logs from multiple services can also help identify related concepts between two or more logs.
+Creating documents around concepts that are included inside of log files can help increase the ability to identify and extract concepts contained inside of log text. Without uploading new documents, only the concepts identified in other public corpora can be used for concept insights analysis. Uploading logs from multiple services can also help identify related concepts between two or more logs.
 
-Though, before creating documents around log files, it is important to categorize, sort, and structure application log information. Uploading raw log data would likely be more detrimental than helpful, and it is best to structure content around specific subjects before uploading. This will allow the Concept Insights Corpora API to be used as it is intended thus be more beneficial to its user.
+Before creating documents around log files, it is important to categorize, sort, and structure application log information. Uploading raw log data would likely be more detrimental than helpful, and it is best to structure content around specific subjects before uploading. This will allow the Concept Insights Corpora API to be used as it is intended, thus be more beneficial to its user.
 
 Using the Watson Concept Insights service is fairly straight forward using the `watson-developer-cloud` Node.JS SDK. Again, to begin, import and initialize the service with the application credentials:
 
 ```js
+var watson = require('watson-developer-cloud');
+
 var concept_insights = watson.concept_insights({
   username: '<username>',
   password: '<password>',
@@ -248,5 +254,9 @@ conceptInsights.corpora.getRelatedDocuments(
 );
 ```
 
+The [Concept Insights API](https://watson-api-explorer.mybluemix.net/apis/concept-insights-v2#/) also offers a few other endpoints that could also be helpful for log file analysis, such as document annotation, concept relations with respect to given corpus, document label searching, and document concept relations. Further use of these APIs is left as an exercise to the reader. Unfortunately at this time, the documentation surrounding the Concept Insights service inside of the Node SDK is fairly limited, thus recommend browsing the [source code](https://github.com/watson-developer-cloud/node-sdk/blob/v1.0.5/services/concept_insights/v2.js) for further clarification.
+
+Use of both the Concept Insights API and the Concept Expansion API provides developers with tools that can allow the next generation of system analysis tools to be written that are smarter, and more complex than what is on the market today. DevOps will have the ability to quickly identify related issues across multiple systems and log files, enabling quicker fixes and faster identification of complex bugs.
+
 ## Conclusion
-The Tradeoff Analytics, Concept Expansion, and Concept Insights services can be valuable assets for developers and system engineers. These services provide functionality that can be used to examine system and software constraints, and be used to find related concepts across many different systems. Furthermore, the Concept Insights service can extract new concepts, build document graphs, and search and compare documents for related concepts, and text. As a result, using Watson cognitive computing systems can help development and operations engineers gain further insight into the stability and efficiency of their systems, thus become more productive  and build more scalable systems. 
+The Tradeoff Analytics, Concept Expansion, and Concept Insights services can be valuable assets for developers and system engineers. These services provide functionality that can be used to examine system and software constraints, and be used to find related concepts across many different systems. Furthermore, the Concept Insights service can extract new concepts, build document graphs, and search and compare documents for related concepts, and text. As a result, using Watson cognitive computing systems can help development and operations engineers gain further insight into the stability and efficiency of their systems, thus become more productive  and build more scalable systems.
