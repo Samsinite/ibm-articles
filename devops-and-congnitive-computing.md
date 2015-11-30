@@ -110,7 +110,7 @@ Next, build an array of concepts, and request the service to expand upon these c
 
 ```js
 
-var initialConceptSet = [ ... ]; // Set of initial concepts to expand from
+var initialConceptSet = [ /* Set of initial concepts to expand from */ ];
 
 concept_expansion.expand(initialConceptSet, function (err, response) {
   if (err) {
@@ -222,8 +222,7 @@ function createDocument(corpusName, documentId) {
   });
 }
 ```
-
-HTML and XWiki document parts can be analyzed as well.
+*HTML and XWiki document parts can be analyzed as well.*
 
 Using the previously created corpus, and previously identified concept mentions, documents inside of the corpus can then be searched for conceptual relevance by using the [Concept Insight Corpora Conceptual Search API](https://watson-api-explorer.mybluemix.net/apis/concept-insights-v2#!/corpora/conceptualSearch)):
 
@@ -249,4 +248,5 @@ conceptInsights.corpora.getRelatedDocuments(
 );
 ```
 
+## Conclusion
 The Tradeoff Analytics, Concept Expansion, and Concept Insights services can be valuable assets for developers and system engineers. These services provide functionality that can be used to examine system and software constraints, and be used to find related concepts across many different systems. Furthermore, the Concept Insights service can extract new concepts, build document graphs, and search and compare documents for related concepts, and text. As a result, using Watson cognitive computing systems can help development and operations engineers gain further insight into the stability and efficiency of their systems, thus become more productive  and build more scalable systems. 
