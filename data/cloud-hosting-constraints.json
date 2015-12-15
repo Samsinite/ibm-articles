@@ -1,0 +1,180 @@
+{
+  "subject": "Archive Storage Services",
+  "columns": [
+    {
+      "key": "price",
+      "type": "numeric",
+      "goal": "min",
+      "full_name": "Price",
+      "is_objective": true,
+      "format": "$####0.00 / Month"
+    },
+    {
+      "key": "brand",
+      "type": "categorical",
+      "goal": "min",
+      "full_name": "Brand",
+      "is_objective": true,
+      "range": [
+        "IBM",
+        "Amazon",
+        "Microsoft",
+        "Heroku",
+        "Digital Ocean"
+      ],
+      "preference": [
+        "IBM",
+        "Amazon",
+        "Microsoft",
+        "Heroku",
+        "Digital Ocean"
+      ]
+    },
+    {
+      "key": "MEMORY",
+      "type": "numeric",
+      "goal": "max",
+      "full_name": "MEMORY (MB)",
+      "is_objective": true
+    },
+    {
+      "key": "instances",
+      "type": "numeric",
+      "goal": "max",
+      "full_name": "Instances",
+      "is_objective": true,
+      "format": "####0 Instances"
+    },
+    {
+      "key": "disk-space",
+      "type": "numeric",
+      "goal": "max",
+      "full_name": "Disk Space",
+      "is_objective": true,
+      "format": "####0 GB Storage"
+    }
+  ],
+  "options": [
+    {
+      "key": "1",
+      "name": "Bluemix Startup",
+      "values": {
+        "brand": "IBM",
+        "price": 0.00,
+        "MEMORY": 256,
+        "instances": 1,
+        "disk-space": 20
+      }
+    },
+    {
+      "key": "2",
+      "name": "Bluemix Business",
+      "values": {
+        "brand": "IBM",
+        "price": 24.15,
+        "MEMORY": 512,
+        "instances": 2,
+        "disk-space": 20
+      }
+    },
+    {
+      "key": "3",
+      "name": "Bluemix Enterprise",
+      "values": {
+        "brand": "IBM",
+        "price": 175.35,
+        "MEMORY": 1024,
+        "instances": 2,
+        "disk-space": 20
+      }
+    },
+    {
+      "key": "4",
+      "name": "Amazon Micro",
+      "values": {
+        "brand": "Amazon",
+        "price": 9.36,
+        "MEMORY": 1024,
+        "instances": 1,
+        "disk-space": 30
+      }
+    },
+    {
+      "key": "5",
+      "name": "Amazon Medium",
+      "values": {
+        "brand": "Amazon",
+        "price": 37.44,
+        "MEMORY": 4096,
+        "instances": 2,
+        "disk-space": 30
+      }
+    },
+    {
+      "key": "6",
+      "name": "Amazon Large",
+      "values": {
+        "brand": "Amazon",
+        "price": 74.88,
+        "MEMORY": 8192,
+        "instances": 2,
+        "disk-space": 30
+      }
+    },
+    {
+      "key": "7",
+      "name": "Microsoft Azure Free",
+      "values": {
+        "brand": "Microsoft",
+        "price": 0.00,
+        "MEMORY": 1024,
+        "instances": 0,
+        "disk-space": 1
+      }
+    },
+    {
+      "key": "8",
+      "name": "Microsoft Azure Shared",
+      "values": {
+        "brand": "Microsoft",
+        "price": 9.67,
+        "MEMORY": 512,
+        "instances": 0,
+        "disk-space": 1
+      }
+    },
+    {
+      "key": "9",
+      "name": "Microsoft Azure Basic",
+      "values": {
+        "brand": "Microsoft",
+        "price": 56.00,
+        "MEMORY": 1792,
+        "instances": 1,
+        "disk-space": 10
+      }
+    },
+    {
+      "key": "10",
+      "name": "Microsoft Azure Standard",
+      "values": {
+        "brand": "Microsoft",
+        "price": 56.00,
+        "MEMORY": 1792,
+        "instances": 1,
+        "disk-space": 10
+      }
+    },
+    {
+      "key": "11",
+      "name": "Microsoft Azure Premuim",
+      "values": {
+        "brand": "Microsoft",
+        "price": 223.00,
+        "MEMORY": 1792,
+        "instances": 1,
+        "disk-space": 500
+      }
+    }
+  ]
+}
